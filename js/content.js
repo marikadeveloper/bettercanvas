@@ -3158,11 +3158,15 @@ async function downloadSlides(moduleUrl) {
   // simulate a small delay after each download
   const downloadDelayMs = 2000;
 
-  snack('Preparing download...');
+  snack(`Preparing download of ${fileDownloadUrls.length} slides...`);
   for (const fileDownloadUrl of fileDownloadUrls) {
     await new Promise((resolve) => setTimeout(resolve, downloadDelayMs));
 
-    snack('Downloading file...');
+    snack(
+      `Downloading ${fileDownloadUrls.indexOf(fileDownloadUrl) + 1}/${
+        fileDownloadUrls.length
+      } slides...`,
+    );
     const link = document.createElement('a');
     link.href = fileDownloadUrl;
     link.download = '';
